@@ -38,7 +38,7 @@ class ExchangeRateService: ObservableObject {
 
     func startPolling(interval: TimeInterval = 3600) {
         fetchRatesIfNeeded()
-        pollTimer?.invalidate()
+        guard pollTimer == nil else { return } // already running
         pollTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
             self?.fetchRatesIfNeeded()
         }

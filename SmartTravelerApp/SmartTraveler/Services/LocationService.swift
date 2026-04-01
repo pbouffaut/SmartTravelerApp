@@ -37,7 +37,8 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate {
         let tz = TimeZone(identifier: info.timeZoneIdentifier) ?? .current
         let city = info.timeZoneIdentifier.split(separator: "/").last
             .map { String($0).replacingOccurrences(of: "_", with: " ") } ?? info.name
-
+        // Single objectWillChange notification for all writes
+        objectWillChange.send()
         currentCity = city
         currentCountryCode = info.id
         currentCountryName = info.name
@@ -51,6 +52,7 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     func clearFakeLocation() {
+        objectWillChange.send()
         isSimulated = false
         currentCity = ""
         currentCountryCode = ""
@@ -83,22 +85,25 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate {
 
         geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
             guard let self, let placemark = placemarks?.first else { return }
+            // Compute values on background before touching main thread
+            let city = placemark.locality ?? placemark.administrativeArea ?? ""
+            let countryCode = placemark.isoCountryCode ?? ""
+            let countryName = placemark.country ?? ""
+            let tz = placemark.timeZone
+            let currency = CountryDatabase.currencyCode(for: countryCode)
 
             DispatchQueue.main.async {
-                self.currentCity = placemark.locality ?? placemark.administrativeArea ?? ""
-                self.currentCountryCode = placemark.isoCountryCode ?? ""
-                self.currentCountryName = placemark.country ?? ""
+                // Single objectWillChange fires once; all writes happen in the same runloop pass
+                self.objectWillChange.send()
+                self.currentCity = city
+                self.currentCountryCode = countryCode
+                self.currentCountryName = countryName
+                if let tz { self.currentTimeZone = tz }
+                self.localCurrency = currency
 
-                if let tz = placemark.timeZone {
-                    self.currentTimeZone = tz
-                }
-
-                self.localCurrency = CountryDatabase.currencyCode(for: self.currentCountryCode)
-
-                // Update shared settings
                 let settings = AppSettings.shared
-                settings.currentCountryCode = self.currentCountryCode
-                settings.currentCity = self.currentCity
+                settings.currentCountryCode = countryCode
+                settings.currentCity = city
                 settings.currentCoordinate = location.coordinate
             }
         }

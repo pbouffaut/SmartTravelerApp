@@ -31,21 +31,24 @@ class NewsService: ObservableObject {
         }
 
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            if let error {
+                DispatchQueue.main.async {
+                    self?.isLoading = false
+                    self?.errorMessage = error.localizedDescription
+                }
+                return
+            }
+            guard let data else {
+                DispatchQueue.main.async {
+                    self?.isLoading = false
+                    self?.errorMessage = "No data received"
+                }
+                return
+            }
+            // Parse XML on the background thread — only publish the result on main
+            let items = RSSParser().parse(data: data)
             DispatchQueue.main.async {
                 self?.isLoading = false
-
-                if let error {
-                    self?.errorMessage = error.localizedDescription
-                    return
-                }
-
-                guard let data else {
-                    self?.errorMessage = "No data received"
-                    return
-                }
-
-                let parser = RSSParser()
-                let items = parser.parse(data: data)
                 self?.articles = items
             }
         }.resume()
@@ -56,6 +59,12 @@ class NewsService: ObservableObject {
 
 private class RSSParser: NSObject, XMLParserDelegate {
     private var items: [NewsItem] = []
+    private let dateFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.locale = Locale(identifier: "en_US_POSIX")
+        f.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
+        return f
+    }()
     private var currentElement = ""
     private var currentTitle = ""
     private var currentDescription = ""
@@ -105,9 +114,6 @@ private class RSSParser: NSObject, XMLParserDelegate {
         if elementName == "item" {
             isInsideItem = false
 
-            let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-            dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
             let date = dateFormatter.date(from: currentPubDate.trimmingCharacters(in: .whitespacesAndNewlines))
 
             // Clean HTML from description
