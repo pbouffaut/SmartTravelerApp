@@ -14,6 +14,8 @@ struct TranslatorView: View {
     @State private var showTargetPicker = false
     @State private var appleTranslationConfig: TranslationSession.Configuration?
     @State private var textToTranslate = ""
+    @State private var configuredSourceLang = ""
+    @State private var configuredTargetLang = ""
 
     var body: some View {
         NavigationStack {
@@ -209,15 +211,18 @@ struct TranslatorView: View {
                         if settings.translationProvider == .apple {
                             translationService.isTranslating = true
                             textToTranslate = inputText
-                            if appleTranslationConfig == nil {
-                                // First translation: create the configuration
+                            let samePair = configuredSourceLang == sourceLang && configuredTargetLang == targetLang
+                            if samePair, appleTranslationConfig != nil {
+                                // Same language pair — re-run the existing session
+                                appleTranslationConfig?.invalidate()
+                            } else {
+                                // First translation or language pair changed — fresh config
+                                configuredSourceLang = sourceLang
+                                configuredTargetLang = targetLang
                                 appleTranslationConfig = TranslationSession.Configuration(
                                     source: Locale.Language(identifier: sourceLang),
                                     target: Locale.Language(identifier: targetLang)
                                 )
-                            } else {
-                                // Same or different language pair: invalidate forces the task to re-run
-                                appleTranslationConfig?.invalidate()
                             }
                         } else {
                             Task {
