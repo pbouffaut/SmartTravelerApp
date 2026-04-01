@@ -164,5 +164,7 @@ extension TranslationService {
         ("no", "Norwegian", "\u{1F1F3}\u{1F1F4}"),
         ("th", "Thai", "\u{1F1F9}\u{1F1ED}"),
         ("vi", "Vietnamese", "\u{1F1FB}\u{1F1F3}"),
+        ("ms", "Malay", "\u{1F1F2}\u{1F1FE}"),
+        ("id", "Indonesian", "\u{1F1EE}\u{1F1E9}"),
     ]
 }

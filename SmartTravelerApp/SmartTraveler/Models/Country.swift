@@ -217,5 +217,24 @@ struct CountryDatabase {
             ],
             travelTips: ["Drink bottled water only", "Tipping 10-15% is customary", "Use authorized taxis or rideshare apps", "Avoid walking alone at night in unfamiliar areas"]
         ),
+        "MY": CountryInfo(
+            id: "MY", name: "Malaysia", currency: "MYR", currencySymbol: "RM",
+            emergencyNumber: "999", policeNumber: "999", ambulanceNumber: "999", fireNumber: "994",
+            timeZoneIdentifier: "Asia/Kuching", drivingSide: "left",
+            languages: ["ms"],
+            transportApps: [
+                TransportApp(name: "Grab", icon: "car.fill", urlScheme: "grab://", appStoreURL: "https://apps.apple.com/app/grab/id647268330", category: .rideshare),
+                TransportApp(name: "AirAsia Ride", icon: "car.fill", urlScheme: nil, appStoreURL: "https://apps.apple.com/app/airasia-ride/id1498984440", category: .rideshare),
+                TransportApp(name: "Rapid KL", icon: "bus.fill", urlScheme: nil, appStoreURL: "https://apps.apple.com/app/myrapid-by-prasarana/id1454960744", category: .publicTransport),
+            ],
+            travelTips: [
+                "Drive on the left side",
+                "Dress modestly when visiting mosques and temples",
+                "Remove shoes before entering homes and places of worship",
+                "Bargaining is common in markets",
+                "Tap water is generally safe in cities, use bottled water in rural Borneo",
+                "Respect local customs during Ramadan",
+            ]
+        ),
     ]
 }

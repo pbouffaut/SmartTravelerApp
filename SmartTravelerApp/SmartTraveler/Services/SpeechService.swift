@@ -129,6 +129,7 @@ class SpeechService: NSObject, ObservableObject {
             "pt": "pt-BR", "ru": "ru-RU", "ar": "ar-SA", "hi": "hi-IN",
             "th": "th-TH", "vi": "vi-VN", "nl": "nl-NL", "pl": "pl-PL",
             "tr": "tr-TR", "sv": "sv-SE", "da": "da-DK", "no": "nb-NO",
+            "ms": "ms-MY", "id": "id-ID",
         ]
         return mapping[shortCode] ?? shortCode
     }

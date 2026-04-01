@@ -538,6 +538,7 @@ struct SettingsView: View {
             FakeDestination(flag: "\u{1F1F9}\u{1F1ED}", city: "Bangkok",       countryName: "Thailand",        countryCode: "TH", currency: "THB"),
             FakeDestination(flag: "\u{1F1E6}\u{1F1FA}", city: "Sydney",        countryName: "Australia",       countryCode: "AU", currency: "AUD"),
             FakeDestination(flag: "\u{1F1F2}\u{1F1FD}", city: "Mexico City",   countryName: "Mexico",          countryCode: "MX", currency: "MXN"),
+            FakeDestination(flag: "\u{1F1F2}\u{1F1FE}", city: "Kota Kinabalu", countryName: "Malaysia (Borneo)", countryCode: "MY", currency: "MYR"),
         ]
     }
 

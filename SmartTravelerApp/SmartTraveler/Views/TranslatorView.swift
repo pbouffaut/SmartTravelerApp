@@ -3,6 +3,7 @@ import Translation
 
 struct TranslatorView: View {
     @EnvironmentObject var settings: AppSettings
+    @EnvironmentObject var locationService: LocationService
     @StateObject private var translationService = TranslationService()
     @StateObject private var speechService = SpeechService()
 
@@ -61,7 +62,16 @@ struct TranslatorView: View {
             }
             .onAppear {
                 speechService.requestPermission()
-                targetLang = settings.homeLanguage
+                sourceLang = settings.homeLanguage
+                let localLang = CountryDatabase.info(for: locationService.currentCountryCode).languages.first
+                targetLang = localLang ?? settings.homeLanguage
+            }
+            .onChange(of: locationService.currentCountryCode) { _, code in
+                guard !code.isEmpty else { return }
+                let localLang = CountryDatabase.info(for: code).languages.first
+                if let localLang, localLang != sourceLang {
+                    targetLang = localLang
+                }
             }
             .sheet(isPresented: $showSourcePicker) {
                 languagePickerSheet(selection: $sourceLang, title: "Source Language")
