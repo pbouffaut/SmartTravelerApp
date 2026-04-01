@@ -1,4 +1,5 @@
 import SwiftUI
+import Translation
 
 struct TranslatorView: View {
     @EnvironmentObject var settings: AppSettings
@@ -10,6 +11,7 @@ struct TranslatorView: View {
     @State private var targetLang = "fr"
     @State private var showSourcePicker = false
     @State private var showTargetPicker = false
+    @State private var appleTranslationConfig: TranslationSession.Configuration?
 
     var body: some View {
         NavigationStack {
@@ -29,6 +31,25 @@ struct TranslatorView: View {
                 }
                 .padding(.horizontal, ST.Spacing.m)
                 .padding(.top, ST.Spacing.s)
+            }
+            .translationTask(appleTranslationConfig) { session in
+                defer {
+                    Task { @MainActor in
+                        appleTranslationConfig = nil
+                        translationService.isTranslating = false
+                    }
+                }
+                do {
+                    let response = try await session.translate(inputText)
+                    await MainActor.run {
+                        translationService.translatedText = response.targetText
+                        translationService.errorMessage = nil
+                    }
+                } catch {
+                    await MainActor.run {
+                        translationService.errorMessage = error.localizedDescription
+                    }
+                }
             }
             .screenBackground()
             .navigationTitle("Translate")
@@ -176,14 +197,27 @@ struct TranslatorView: View {
 
                     // Translate button
                     AccentButton("Translate", icon: "arrow.right") {
-                        Task {
-                            await translationService.translate(
-                                text: inputText,
-                                from: sourceLang,
-                                to: targetLang,
-                                provider: settings.translationProvider,
-                                apiKey: settings.translationAPIKey
-                            )
+                        translationService.errorMessage = nil
+                        if settings.translationProvider == .apple {
+                            translationService.isTranslating = true
+                            // Reset config first so the task fires even if languages didn't change
+                            appleTranslationConfig = nil
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                appleTranslationConfig = TranslationSession.Configuration(
+                                    source: Locale.Language(identifier: sourceLang),
+                                    target: Locale.Language(identifier: targetLang)
+                                )
+                            }
+                        } else {
+                            Task {
+                                await translationService.translate(
+                                    text: inputText,
+                                    from: sourceLang,
+                                    to: targetLang,
+                                    provider: settings.translationProvider,
+                                    apiKey: settings.translationAPIKey
+                                )
+                            }
                         }
                     }
                 }

@@ -2,7 +2,7 @@ name: SmartTraveler
 options:
   bundleIdPrefix: com.smarttraveler
   deploymentTarget:
-    iOS: "17.0"
+    iOS: "18.0"
   xcodeVersion: "16.0"
   generateEmptyDirectories: true
 

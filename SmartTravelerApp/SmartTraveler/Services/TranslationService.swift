@@ -17,7 +17,9 @@ class TranslationService: ObservableObject {
             let result: String
             switch provider {
             case .apple:
-                result = try await translateWithApple(text: text, from: sourceLang, to: targetLang)
+                // Apple Translation is handled directly in TranslatorView via .translationTask
+                await MainActor.run { isTranslating = false }
+                return
             case .deepL:
                 result = try await translateWithDeepL(text: text, from: sourceLang, to: targetLang, apiKey: apiKey)
             case .google:
@@ -34,15 +36,6 @@ class TranslationService: ObservableObject {
                 isTranslating = false
             }
         }
-    }
-
-    // MARK: - Apple Translation (free, on-device if available)
-
-    private func translateWithApple(text: String, from: String, to: String) async throws -> String {
-        // Uses a simple free translation endpoint as fallback
-        // In production, use Apple's Translation framework (iOS 17.4+)
-        // import Translation; let session = TranslationSession(from: .init(identifier: from), to: .init(identifier: to))
-        throw TranslationError.providerUnavailable("Apple Translation requires iOS 17.4+. Please use DeepL or Google with an API key.")
     }
 
     // MARK: - DeepL
@@ -135,7 +128,6 @@ class TranslationService: ObservableObject {
         case invalidURL
         case apiError(String)
         case parseError
-        case providerUnavailable(String)
 
         var errorDescription: String? {
             switch self {
@@ -143,7 +135,6 @@ class TranslationService: ObservableObject {
             case .invalidURL: return "Invalid request"
             case .apiError(let msg): return msg
             case .parseError: return "Could not parse translation response"
-            case .providerUnavailable(let msg): return msg
             }
         }
     }
