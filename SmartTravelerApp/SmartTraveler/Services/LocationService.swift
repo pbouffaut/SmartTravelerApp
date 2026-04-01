@@ -13,6 +13,7 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var currentTimeZone: TimeZone = .current
     @Published var authorizationStatus: CLAuthorizationStatus = .notDetermined
     @Published var localCurrency: String = ""
+    @Published var isSimulated: Bool = false
 
     override init() {
         super.init()
@@ -22,6 +23,40 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     func startTracking() {
+        let settings = AppSettings.shared
+        if settings.fakeLocationEnabled {
+            applyFakeLocation(countryCode: settings.fakeCountryCode)
+        } else {
+            manager.requestWhenInUseAuthorization()
+            manager.startUpdatingLocation()
+        }
+    }
+
+    func applyFakeLocation(countryCode: String) {
+        let info = CountryDatabase.info(for: countryCode)
+        let tz = TimeZone(identifier: info.timeZoneIdentifier) ?? .current
+        let city = info.timeZoneIdentifier.split(separator: "/").last
+            .map { String($0).replacingOccurrences(of: "_", with: " ") } ?? info.name
+
+        currentCity = city
+        currentCountryCode = info.id
+        currentCountryName = info.name
+        currentTimeZone = tz
+        localCurrency = info.currency
+        isSimulated = true
+
+        let settings = AppSettings.shared
+        settings.currentCountryCode = info.id
+        settings.currentCity = city
+    }
+
+    func clearFakeLocation() {
+        isSimulated = false
+        currentCity = ""
+        currentCountryCode = ""
+        currentCountryName = ""
+        currentTimeZone = .current
+        localCurrency = ""
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
     }
@@ -35,6 +70,7 @@ class LocationService: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard !AppSettings.shared.fakeLocationEnabled else { return }
         guard let location = locations.last else { return }
 
         // Only reverse geocode if moved significantly

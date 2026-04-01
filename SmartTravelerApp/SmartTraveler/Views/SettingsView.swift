@@ -7,6 +7,7 @@ struct SettingsView: View {
     @State private var showCurrencyPicker = false
     @State private var showTimeZonePicker = false
     @State private var showLanguagePicker = false
+    @State private var showFakeLocationPicker = false
     @State private var apiKeyInput = ""
 
     var body: some View {
@@ -22,6 +23,9 @@ struct SettingsView: View {
                 if settings.translationProvider.requiresKey {
                     apiKeySection
                 }
+
+                // Simulated Location
+                simulatedLocationSection
 
                 // Current Location
                 locationSection
@@ -48,6 +52,9 @@ struct SettingsView: View {
         }
         .sheet(isPresented: $showLanguagePicker) {
             languagePickerSheet
+        }
+        .sheet(isPresented: $showFakeLocationPicker) {
+            fakeLocationPickerSheet
         }
     }
 
@@ -229,6 +236,101 @@ struct SettingsView: View {
         }
     }
 
+    // MARK: - Simulated Location
+
+    private var simulatedLocationSection: some View {
+        VStack(alignment: .leading, spacing: ST.Spacing.s) {
+            HStack(spacing: ST.Spacing.s) {
+                SectionHeader("Simulated Location", icon: "location.slash.fill")
+                if settings.fakeLocationEnabled {
+                    Text("ACTIVE")
+                        .font(ST.Font.label())
+                        .tracking(1)
+                        .foregroundColor(.black)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 3)
+                        .background(Color(hex: "#FFB340"))
+                        .cornerRadius(ST.Radius.pill)
+                }
+            }
+
+            CardView {
+                VStack(spacing: ST.Spacing.s) {
+                    // Toggle
+                    HStack {
+                        VStack(alignment: .leading, spacing: 3) {
+                            Text("Override Location")
+                                .font(ST.Font.body())
+                                .foregroundColor(ST.Colors.textPrimary)
+                            Text("For testing or planning a trip")
+                                .font(ST.Font.label())
+                                .foregroundColor(ST.Colors.textSecondary)
+                        }
+                        Spacer()
+                        Toggle("", isOn: Binding(
+                            get: { settings.fakeLocationEnabled },
+                            set: { enabled in
+                                settings.fakeLocationEnabled = enabled
+                                if enabled {
+                                    locationService.applyFakeLocation(countryCode: settings.fakeCountryCode)
+                                } else {
+                                    locationService.clearFakeLocation()
+                                }
+                            }
+                        ))
+                        .tint(Color(hex: "#FFB340"))
+                    }
+
+                    if settings.fakeLocationEnabled {
+                        Divider().background(ST.Colors.border)
+
+                        // Destination picker row
+                        Button(action: { showFakeLocationPicker = true }) {
+                            HStack(spacing: 12) {
+                                let info = CountryDatabase.info(for: settings.fakeCountryCode)
+                                Image(systemName: "mappin.and.ellipse")
+                                    .font(.system(size: 14))
+                                    .foregroundColor(Color(hex: "#FFB340"))
+                                    .frame(width: 28, height: 28)
+                                    .background(Color(hex: "#FFB340").opacity(0.15))
+                                    .cornerRadius(7)
+
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(info.name)
+                                        .font(ST.Font.body())
+                                        .foregroundColor(ST.Colors.textPrimary)
+                                    Text("\(info.currency)  •  \(TimeZone(identifier: info.timeZoneIdentifier)?.abbreviation() ?? "")")
+                                        .font(ST.Font.label())
+                                        .foregroundColor(ST.Colors.textSecondary)
+                                }
+
+                                Spacer()
+
+                                Image(systemName: "chevron.right")
+                                    .font(.system(size: 12, weight: .semibold))
+                                    .foregroundColor(ST.Colors.textTertiary)
+                            }
+                        }
+
+                        // Warning note
+                        HStack(spacing: 6) {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .font(.system(size: 11))
+                                .foregroundColor(Color(hex: "#FFB340"))
+                            Text("All features use simulated location data")
+                                .font(ST.Font.label())
+                                .foregroundColor(ST.Colors.textSecondary)
+                        }
+                        .padding(10)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color(hex: "#FFB340").opacity(0.1))
+                        .cornerRadius(ST.Radius.input)
+                    }
+                }
+            }
+        }
+    }
+
     // MARK: - Picker Sheets
 
     private var currencyPickerSheet: some View {
@@ -369,6 +471,74 @@ struct SettingsView: View {
 
     private func languageName(for code: String) -> String {
         TranslationService.supportedLanguages.first { $0.code == code }?.name ?? code
+    }
+
+    private var fakeLocationPickerSheet: some View {
+        NavigationStack {
+            List {
+                ForEach(fakeDestinations, id: \.countryCode) { dest in
+                    Button(action: {
+                        settings.fakeCountryCode = dest.countryCode
+                        locationService.applyFakeLocation(countryCode: dest.countryCode)
+                        showFakeLocationPicker = false
+                    }) {
+                        HStack(spacing: 12) {
+                            Text(dest.flag)
+                                .font(.system(size: 22))
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(dest.city)
+                                    .font(ST.Font.body())
+                                    .foregroundColor(ST.Colors.textPrimary)
+                                Text("\(dest.countryName)  •  \(dest.currency)")
+                                    .font(ST.Font.caption())
+                                    .foregroundColor(ST.Colors.textSecondary)
+                            }
+                            Spacer()
+                            if settings.fakeCountryCode == dest.countryCode {
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(Color(hex: "#FFB340"))
+                            }
+                        }
+                        .padding(.vertical, 2)
+                    }
+                    .listRowBackground(ST.Colors.card)
+                }
+            }
+            .scrollContentBackground(.hidden)
+            .background(ST.Colors.background)
+            .navigationTitle("Choose Destination")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") { showFakeLocationPicker = false }
+                        .foregroundColor(Color(hex: "#FFB340"))
+                }
+            }
+        }
+        .presentationDetents([.large])
+    }
+
+    private struct FakeDestination {
+        let flag: String
+        let city: String
+        let countryName: String
+        let countryCode: String
+        let currency: String
+    }
+
+    private var fakeDestinations: [FakeDestination] {
+        [
+            FakeDestination(flag: "\u{1F1FA}\u{1F1F8}", city: "New York",      countryName: "United States",   countryCode: "US", currency: "USD"),
+            FakeDestination(flag: "\u{1F1EC}\u{1F1E7}", city: "London",        countryName: "United Kingdom",  countryCode: "GB", currency: "GBP"),
+            FakeDestination(flag: "\u{1F1EB}\u{1F1F7}", city: "Paris",         countryName: "France",          countryCode: "FR", currency: "EUR"),
+            FakeDestination(flag: "\u{1F1EF}\u{1F1F5}", city: "Tokyo",         countryName: "Japan",           countryCode: "JP", currency: "JPY"),
+            FakeDestination(flag: "\u{1F1E9}\u{1F1EA}", city: "Berlin",        countryName: "Germany",         countryCode: "DE", currency: "EUR"),
+            FakeDestination(flag: "\u{1F1EA}\u{1F1F8}", city: "Barcelona",     countryName: "Spain",           countryCode: "ES", currency: "EUR"),
+            FakeDestination(flag: "\u{1F1EE}\u{1F1F9}", city: "Rome",          countryName: "Italy",           countryCode: "IT", currency: "EUR"),
+            FakeDestination(flag: "\u{1F1F9}\u{1F1ED}", city: "Bangkok",       countryName: "Thailand",        countryCode: "TH", currency: "THB"),
+            FakeDestination(flag: "\u{1F1E6}\u{1F1FA}", city: "Sydney",        countryName: "Australia",       countryCode: "AU", currency: "AUD"),
+            FakeDestination(flag: "\u{1F1F2}\u{1F1FD}", city: "Mexico City",   countryName: "Mexico",          countryCode: "MX", currency: "MXN"),
+        ]
     }
 
     private var commonTimeZones: [TimeZone] {

@@ -73,11 +73,11 @@ struct CurrencyView: View {
     private var locationBanner: some View {
         CardView {
             HStack(spacing: 12) {
-                Image(systemName: "location.fill")
+                Image(systemName: locationService.isSimulated ? "location.slash.fill" : "location.fill")
                     .font(.system(size: 14))
-                    .foregroundColor(ST.Colors.accent)
+                    .foregroundColor(locationService.isSimulated ? Color(hex: "#FFB340") : ST.Colors.accent)
                     .frame(width: 32, height: 32)
-                    .background(ST.Colors.accentTint)
+                    .background((locationService.isSimulated ? Color(hex: "#FFB340") : ST.Colors.accent).opacity(0.14))
                     .cornerRadius(8)
 
                 VStack(alignment: .leading, spacing: 2) {
@@ -95,6 +95,16 @@ struct CurrencyView: View {
                     }
                 }
                 Spacer()
+                if locationService.isSimulated {
+                    Text("SIMULATED")
+                        .font(ST.Font.label())
+                        .tracking(0.8)
+                        .foregroundColor(.black)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(Color(hex: "#FFB340"))
+                        .cornerRadius(ST.Radius.pill)
+                }
             }
         }
     }

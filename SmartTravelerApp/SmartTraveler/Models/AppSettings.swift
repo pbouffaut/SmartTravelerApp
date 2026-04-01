@@ -25,6 +25,14 @@ class AppSettings: ObservableObject {
     @Published var currentCity: String = ""
     @Published var currentCoordinate: CLLocationCoordinate2D?
 
+    // Fake / simulated location
+    @Published var fakeLocationEnabled: Bool {
+        didSet { UserDefaults.standard.set(fakeLocationEnabled, forKey: "fakeLocationEnabled") }
+    }
+    @Published var fakeCountryCode: String {
+        didSet { UserDefaults.standard.set(fakeCountryCode, forKey: "fakeCountryCode") }
+    }
+
     var homeTimeZone: TimeZone {
         TimeZone(identifier: homeTimeZoneIdentifier) ?? .current
     }
@@ -56,5 +64,7 @@ class AppSettings: ObservableObject {
         self.translationAPIKey = UserDefaults.standard.string(forKey: "translationAPIKey") ?? ""
         let providerRaw = UserDefaults.standard.string(forKey: "translationProvider") ?? "apple"
         self.translationProvider = TranslationProvider(rawValue: providerRaw) ?? .apple
+        self.fakeLocationEnabled = UserDefaults.standard.bool(forKey: "fakeLocationEnabled")
+        self.fakeCountryCode = UserDefaults.standard.string(forKey: "fakeCountryCode") ?? "FR"
     }
 }

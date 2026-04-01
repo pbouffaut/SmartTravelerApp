@@ -63,9 +63,18 @@ struct ClockView: View {
         CardView {
             VStack(spacing: ST.Spacing.s) {
                 HStack {
-                    SectionHeader("Local Time", icon: "location.fill")
+                    SectionHeader("Local Time", icon: locationService.isSimulated ? "location.slash.fill" : "location.fill")
                     Spacer()
-                    if !locationService.currentCity.isEmpty {
+                    if locationService.isSimulated {
+                        Text("SIMULATED")
+                            .font(ST.Font.label())
+                            .tracking(0.8)
+                            .foregroundColor(.black)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(Color(hex: "#FFB340"))
+                            .cornerRadius(ST.Radius.pill)
+                    } else if !locationService.currentCity.isEmpty {
                         Text(locationService.currentCity)
                             .font(ST.Font.caption())
                             .foregroundColor(ST.Colors.textSecondary)
