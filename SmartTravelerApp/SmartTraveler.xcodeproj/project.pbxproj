@@ -1,0 +1,430 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00494737597E83B93CD17C70 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614EDB2F3FE80033B6675091 /* Country.swift */; };
+		1301CAB9878A6BB9A019A0C0 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E75F8BDE54627AA79072E6B /* NewsView.swift */; };
+		187444AF658DB00B036AF3B4 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EDB9E5DC828BF92B5FC683 /* AppSettings.swift */; };
+		2B7A43EC88DD67B97D48A9B1 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E35FF15FFFCE7325D3EF046 /* ClockView.swift */; };
+		2E335A7DB641C889568FFB29 /* CurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46EC3E7BB67D9BB01296672 /* CurrencyView.swift */; };
+		314F5A0D35671ADA186FED21 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7296C93D3FC557105A77E89F /* ContentView.swift */; };
+		503F028816CA1F3E955B5D06 /* SmartTravelerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A69502CD27FDF544FDF60DA /* SmartTravelerApp.swift */; };
+		51E6096EE573769682A001A9 /* TranslatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B384C92F228F7A0AFAE720 /* TranslatorView.swift */; };
+		56D4B0A0DC4465D1272A5A3B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214F9A28ED55B02AEEBC60AE /* Theme.swift */; };
+		6030179FB7074DC989AADC03 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2AB14C306AAF7A6CE0FBC8 /* SettingsView.swift */; };
+		854C412778C2DC49A9094007 /* TranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9412809385BF52E82613A08 /* TranslationService.swift */; };
+		8DB1CDFB086D415A9295ADFF /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07930DFB620438158A87D038 /* SpeechService.swift */; };
+		A5EE7F4CE73067423A35EEE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FA24BAF6BC32A322DD2DAB7 /* Assets.xcassets */; };
+		CB5BFC442D16CC3BB7CA9C75 /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4E75E3DC52D7C236E68FF5 /* ExchangeRateService.swift */; };
+		D8E7F171245D21931676938C /* SafetyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC7FEA1186A736A00FC0D41 /* SafetyView.swift */; };
+		DE482F184DE8F7FB605A37EA /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE323220060B0B756CBFC000 /* LocationService.swift */; };
+		E0EEEB10EBF01B2B38F7845A /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6198FC2410D9383587EF6DFF /* NewsService.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		07930DFB620438158A87D038 /* SpeechService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechService.swift; sourceTree = "<group>"; };
+		0E75F8BDE54627AA79072E6B /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		214F9A28ED55B02AEEBC60AE /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		42EDB9E5DC828BF92B5FC683 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		614EDB2F3FE80033B6675091 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		6198FC2410D9383587EF6DFF /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
+		7296C93D3FC557105A77E89F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7FA24BAF6BC32A322DD2DAB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		81B384C92F228F7A0AFAE720 /* TranslatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorView.swift; sourceTree = "<group>"; };
+		8A69502CD27FDF544FDF60DA /* SmartTravelerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartTravelerApp.swift; sourceTree = "<group>"; };
+		8B2AB14C306AAF7A6CE0FBC8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9E35FF15FFFCE7325D3EF046 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		ADC7FEA1186A736A00FC0D41 /* SafetyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafetyView.swift; sourceTree = "<group>"; };
+		BE323220060B0B756CBFC000 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		D92D5680A322A6C82E8A2E58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D9412809385BF52E82613A08 /* TranslationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationService.swift; sourceTree = "<group>"; };
+		DE4E75E3DC52D7C236E68FF5 /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateService.swift; sourceTree = "<group>"; };
+		F46EC3E7BB67D9BB01296672 /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
+		FB578A984807CF765F388B60 /* SmartTraveler.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SmartTraveler.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0F9EE5E0415862851287794C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				42EDB9E5DC828BF92B5FC683 /* AppSettings.swift */,
+				614EDB2F3FE80033B6675091 /* Country.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1FF349504222A3DC4C0D2087 /* SmartTraveler */ = {
+			isa = PBXGroup;
+			children = (
+				7FA24BAF6BC32A322DD2DAB7 /* Assets.xcassets */,
+				7296C93D3FC557105A77E89F /* ContentView.swift */,
+				D92D5680A322A6C82E8A2E58 /* Info.plist */,
+				8A69502CD27FDF544FDF60DA /* SmartTravelerApp.swift */,
+				0F9EE5E0415862851287794C /* Models */,
+				4C1F4A3F8B6ACB504A0E88ED /* Resources */,
+				F890F7C185164CC5937FEE01 /* Services */,
+				BE075578BA856BE5ED1328EF /* Theme */,
+				E1C722D0D5E9AFC2C7F75BEC /* Views */,
+			);
+			path = SmartTraveler;
+			sourceTree = "<group>";
+		};
+		2B5DEB16639FF861616AF523 = {
+			isa = PBXGroup;
+			children = (
+				1FF349504222A3DC4C0D2087 /* SmartTraveler */,
+				73FBE091EDFEF6F0DB0D0F82 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4C1F4A3F8B6ACB504A0E88ED /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		73FBE091EDFEF6F0DB0D0F82 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FB578A984807CF765F388B60 /* SmartTraveler.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE075578BA856BE5ED1328EF /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				214F9A28ED55B02AEEBC60AE /* Theme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		E1C722D0D5E9AFC2C7F75BEC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9E35FF15FFFCE7325D3EF046 /* ClockView.swift */,
+				F46EC3E7BB67D9BB01296672 /* CurrencyView.swift */,
+				0E75F8BDE54627AA79072E6B /* NewsView.swift */,
+				ADC7FEA1186A736A00FC0D41 /* SafetyView.swift */,
+				8B2AB14C306AAF7A6CE0FBC8 /* SettingsView.swift */,
+				81B384C92F228F7A0AFAE720 /* TranslatorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F890F7C185164CC5937FEE01 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DE4E75E3DC52D7C236E68FF5 /* ExchangeRateService.swift */,
+				BE323220060B0B756CBFC000 /* LocationService.swift */,
+				6198FC2410D9383587EF6DFF /* NewsService.swift */,
+				07930DFB620438158A87D038 /* SpeechService.swift */,
+				D9412809385BF52E82613A08 /* TranslationService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B1A54DBF84FCD9767DBA2FB8 /* SmartTraveler */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E6DB7E4E49F8DECCF02D002 /* Build configuration list for PBXNativeTarget "SmartTraveler" */;
+			buildPhases = (
+				7E922C5F8111E28BD720F06F /* Sources */,
+				F24AACBCF9FE7630C741B38B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SmartTraveler;
+			packageProductDependencies = (
+			);
+			productName = SmartTraveler;
+			productReference = FB578A984807CF765F388B60 /* SmartTraveler.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AF0715F9CB01372526BDBB8B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					B1A54DBF84FCD9767DBA2FB8 = {
+						DevelopmentTeam = "";
+					};
+				};
+			};
+			buildConfigurationList = 74B43DEBD667F355CE92AD8F /* Build configuration list for PBXProject "SmartTraveler" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 2B5DEB16639FF861616AF523;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 73FBE091EDFEF6F0DB0D0F82 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B1A54DBF84FCD9767DBA2FB8 /* SmartTraveler */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F24AACBCF9FE7630C741B38B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5EE7F4CE73067423A35EEE7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7E922C5F8111E28BD720F06F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				187444AF658DB00B036AF3B4 /* AppSettings.swift in Sources */,
+				2B7A43EC88DD67B97D48A9B1 /* ClockView.swift in Sources */,
+				314F5A0D35671ADA186FED21 /* ContentView.swift in Sources */,
+				00494737597E83B93CD17C70 /* Country.swift in Sources */,
+				2E335A7DB641C889568FFB29 /* CurrencyView.swift in Sources */,
+				CB5BFC442D16CC3BB7CA9C75 /* ExchangeRateService.swift in Sources */,
+				DE482F184DE8F7FB605A37EA /* LocationService.swift in Sources */,
+				E0EEEB10EBF01B2B38F7845A /* NewsService.swift in Sources */,
+				1301CAB9878A6BB9A019A0C0 /* NewsView.swift in Sources */,
+				D8E7F171245D21931676938C /* SafetyView.swift in Sources */,
+				6030179FB7074DC989AADC03 /* SettingsView.swift in Sources */,
+				503F028816CA1F3E955B5D06 /* SmartTravelerApp.swift in Sources */,
+				8DB1CDFB086D415A9295ADFF /* SpeechService.swift in Sources */,
+				56D4B0A0DC4465D1272A5A3B /* Theme.swift in Sources */,
+				854C412778C2DC49A9094007 /* TranslationService.swift in Sources */,
+				51E6096EE573769682A001A9 /* TranslatorView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0690E5DE1971157F8DF2FFEA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		8FA60A63528D20B872449009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SmartTraveler/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Smart Traveler";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Smart Traveler uses your location to detect your current country, show local currency, time zone, news, and emergency information.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Smart Traveler needs microphone access for voice-to-text translation.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Smart Traveler uses speech recognition to let you speak text for translation.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.smarttraveler.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B93463039265722760C0C6E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		F0C20832FF48A34B081026FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SmartTraveler/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Smart Traveler";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Smart Traveler uses your location to detect your current country, show local currency, time zone, news, and emergency information.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Smart Traveler needs microphone access for voice-to-text translation.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Smart Traveler uses speech recognition to let you speak text for translation.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.smarttraveler.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5E6DB7E4E49F8DECCF02D002 /* Build configuration list for PBXNativeTarget "SmartTraveler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FA60A63528D20B872449009 /* Debug */,
+				F0C20832FF48A34B081026FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		74B43DEBD667F355CE92AD8F /* Build configuration list for PBXProject "SmartTraveler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0690E5DE1971157F8DF2FFEA /* Debug */,
+				B93463039265722760C0C6E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AF0715F9CB01372526BDBB8B /* Project object */;
+}
