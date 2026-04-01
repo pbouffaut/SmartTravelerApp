@@ -23,6 +23,13 @@ class SpeechService: NSObject, ObservableObject {
 
     func speak(_ text: String, language: String = "en") {
         synthesizer.stopSpeaking(at: .immediate)
+        do {
+            let session = AVAudioSession.sharedInstance()
+            try session.setCategory(.playback, mode: .spokenAudio, options: .duckOthers)
+            try session.setActive(true)
+        } catch {
+            print("AVAudioSession playback setup error: \(error)")
+        }
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = AVSpeechSynthesisVoice(language: languageCode(for: language))
         utterance.rate = AVSpeechUtteranceDefaultSpeechRate
@@ -110,6 +117,7 @@ class SpeechService: NSObject, ObservableObject {
         recognitionTask = nil
         audioEngine = nil
         isListening = false
+        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
     }
 
     // MARK: - Helpers
