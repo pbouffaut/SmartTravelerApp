@@ -12,6 +12,7 @@ struct TranslatorView: View {
     @State private var showSourcePicker = false
     @State private var showTargetPicker = false
     @State private var appleTranslationConfig: TranslationSession.Configuration?
+    @State private var textToTranslate = ""
 
     var body: some View {
         NavigationStack {
@@ -33,21 +34,17 @@ struct TranslatorView: View {
                 .padding(.top, ST.Spacing.s)
             }
             .translationTask(appleTranslationConfig) { session in
-                defer {
-                    Task { @MainActor in
-                        appleTranslationConfig = nil
-                        translationService.isTranslating = false
-                    }
-                }
                 do {
-                    let response = try await session.translate(inputText)
+                    let response = try await session.translate(textToTranslate)
                     await MainActor.run {
                         translationService.translatedText = response.targetText
                         translationService.errorMessage = nil
+                        translationService.isTranslating = false
                     }
                 } catch {
                     await MainActor.run {
                         translationService.errorMessage = error.localizedDescription
+                        translationService.isTranslating = false
                     }
                 }
             }
@@ -87,6 +84,7 @@ struct TranslatorView: View {
                 let temp = sourceLang
                 sourceLang = targetLang
                 targetLang = temp
+                appleTranslationConfig = nil
                 if !translationService.translatedText.isEmpty {
                     inputText = translationService.translatedText
                     translationService.translatedText = ""
@@ -200,13 +198,16 @@ struct TranslatorView: View {
                         translationService.errorMessage = nil
                         if settings.translationProvider == .apple {
                             translationService.isTranslating = true
-                            // Reset config first so the task fires even if languages didn't change
-                            appleTranslationConfig = nil
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                            textToTranslate = inputText
+                            if appleTranslationConfig == nil {
+                                // First translation: create the configuration
                                 appleTranslationConfig = TranslationSession.Configuration(
                                     source: Locale.Language(identifier: sourceLang),
                                     target: Locale.Language(identifier: targetLang)
                                 )
+                            } else {
+                                // Same or different language pair: invalidate forces the task to re-run
+                                appleTranslationConfig?.invalidate()
                             }
                         } else {
                             Task {
