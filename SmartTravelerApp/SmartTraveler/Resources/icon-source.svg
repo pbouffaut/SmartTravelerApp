@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+
+  <!-- Background: same light gray as HomeAI / ShutterPhil -->
+  <rect width="1024" height="1024" fill="#EAEAEF"/>
+
+  <defs>
+    <clipPath id="globeClip">
+      <circle cx="480" cy="430" r="200"/>
+    </clipPath>
+  </defs>
+
+  <!-- ── Globe ─────────────────────────────────────────────── -->
+  <circle cx="480" cy="430" r="200" fill="#B8965A"/>
+
+  <!-- White grid lines clipped to globe -->
+  <g clip-path="url(#globeClip)" stroke="#EAEAEF" stroke-width="16" fill="none">
+    <!-- 2 latitude lines (upper + lower third) -->
+    <line x1="280" y1="320" x2="680" y2="320"/>
+    <line x1="280" y1="540" x2="680" y2="540"/>
+    <!-- Equator -->
+    <line x1="280" y1="430" x2="680" y2="430"/>
+    <!-- Central meridian ellipse for 3-D depth -->
+    <ellipse cx="480" cy="430" rx="100" ry="200"/>
+  </g>
+
+  <!-- Globe outline ring -->
+  <circle cx="480" cy="430" r="200" fill="none" stroke="#EAEAEF" stroke-width="16"/>
+
+  <!-- ── Plane ───────────────────────────────────────────────
+       Top-down silhouette, nose pointing upper-right (~45°).
+       Centered at (660, 240) — clearly outside/overlapping globe.
+       Drawn nose-up then rotated 45°.
+  ──────────────────────────────────────────────────────────── -->
+  <g transform="translate(655, 240) rotate(45)" fill="#B8965A">
+    <!-- Fuselage -->
+    <ellipse cx="0" cy="0" rx="14" ry="80"/>
+    <!-- Main wings -->
+    <polygon points="0,-15  -98,44  -12,24  12,24  98,44"/>
+    <!-- Tail left -->
+    <polygon points="-5,57  -40,88  -5,72"/>
+    <!-- Tail right -->
+    <polygon points=" 5,57   40,88   5,72"/>
+  </g>
+
+  <!-- ── App name ──────────────────────────────────────────── -->
+  <text x="512" y="828"
+        font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+        font-weight="300"
+        font-size="60"
+        letter-spacing="-0.5"
+        fill="#3C3C3E"
+        text-anchor="middle">SmartTraveler</text>
+
+</svg>
